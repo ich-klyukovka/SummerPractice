@@ -53,127 +53,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QWidget" name="infoWidget" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <widget class="QWidget" name="verticalLayoutWidget_2">
-           <property name="geometry">
-            <rect>
-             <x>9</x>
-             <y>9</y>
-             <width>194</width>
-             <height>381</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetDefaultConstraint</enum>
-            </property>
-            <item>
-             <widget class="QLabel" name="bestSolution">
-              <property name="text">
-               <string>Best solution</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QTableWidget" name="bestMatrix">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="sizeAdjustPolicy">
-               <enum>QAbstractScrollArea::AdjustIgnored</enum>
-              </property>
-              <property name="rowCount">
-               <number>5</number>
-              </property>
-              <property name="columnCount">
-               <number>5</number>
-              </property>
-              <attribute name="horizontalHeaderCascadingSectionResizes">
-               <bool>false</bool>
-              </attribute>
-              <attribute name="horizontalHeaderMinimumSectionSize">
-               <number>15</number>
-              </attribute>
-              <attribute name="horizontalHeaderDefaultSectionSize">
-               <number>34</number>
-              </attribute>
-              <attribute name="verticalHeaderCascadingSectionResizes">
-               <bool>false</bool>
-              </attribute>
-              <attribute name="verticalHeaderMinimumSectionSize">
-               <number>15</number>
-              </attribute>
-              <attribute name="verticalHeaderDefaultSectionSize">
-               <number>34</number>
-              </attribute>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <row/>
-              <column/>
-              <column/>
-              <column/>
-              <column/>
-              <column/>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
-              <item>
-               <widget class="QLabel" name="bestSolutionCost">
-                <property name="text">
-                 <string>Best sol. cost:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="bestSolCost">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <item>
-               <widget class="QLabel" name="AverageGenerationCost">
-                <property name="text">
-                 <string>Average gen. cost:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="averageGenCost">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
        </layout>
       </item>
      </layout>
@@ -209,6 +88,25 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="backButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Back</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="nextButton">

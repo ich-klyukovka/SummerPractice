@@ -7,7 +7,7 @@ from PyQt5.QtCore import pyqtSignal
 from SummerPractice.src.gui.parameters_dock_ui import Ui_ParametersDock
 
 SettingsData = TypedDict('SettingsData', {
-    'y_points': list[float],
+    'matrix': list[float],
     'steps_amount': int,
     'population_size': int,
     'mutation_rate': float,
@@ -69,7 +69,7 @@ class ParametersDock(QDockWidget, Ui_ParametersDock):
 
     def get_settings(self) -> SettingsData:
         return {
-            'y_points': list(map(float, self.functionLineEdit.text().split())),
+            'matrix': list(map(float, self.functionLineEdit.text().split())),
             'steps_amount': int,
             'population_size': int,
             'mutation_rate': float,
