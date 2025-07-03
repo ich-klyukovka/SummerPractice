@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QDockWidget, QTableWidgetItem, QTableWidget, QHBoxLa
 from PyQt5.QtCore import Qt
 from gui.ui.info_widget_ui import Ui_InfoWidget
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QColor
 
 class InfoWidget(QDockWidget, Ui_InfoWidget):
     def __init__(self):
@@ -60,6 +61,10 @@ class InfoWidget(QDockWidget, Ui_InfoWidget):
         self.bestSolCost.setText(f"{data['best_fitness']:.2f}")
         self.averageGenCost.setText(f"{data['avg_fitness']:.2f}")
         self.generationValue.setText(str(data['current_generation']))
+
+        self.bestSolCost.setStyleSheet("color: black;")
+        self.averageGenCost.setStyleSheet("color: black;")
+        self.generationValue.setStyleSheet("color: black;")
         
         # Перевод фазы на русский
         phase_names = {
@@ -69,6 +74,7 @@ class InfoWidget(QDockWidget, Ui_InfoWidget):
             'mutation': "Мутация"
         }
         self.phaseValue.setText(phase_names.get(data['phase'], data['phase']))
+        self.phaseValue.setStyleSheet("color: black;")
         
         # Форматирование лучшей хромосомы
         if data['best_solution']:
@@ -77,6 +83,7 @@ class InfoWidget(QDockWidget, Ui_InfoWidget):
             chromo_str = " "
 
         self.bestChromosomeValue.setPlainText(chromo_str)
+        self.bestChromosomeValue.setStyleSheet("color: black;")
         
         # Обновление матрицы затрат
         # n = len(data['cost_matrix'])

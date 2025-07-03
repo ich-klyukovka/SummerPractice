@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem
-from PyQt5 import Qt, QtWidgets
+from PyQt5 import Qt, QtWidgets, QtCore
 
 from gui.ui.main_window_ui import Ui_MainWindow
 from gui.parameters_dock import ParametersDock
@@ -154,9 +154,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         for i in range(n):
             for j in range(n):
-                self.infoWidget.matrixWidget.setItem(
-                    i, j, 
-                    QTableWidgetItem(str(data['cost_matrix'][i][j])))
+                item = QTableWidgetItem(str((data['cost_matrix'][i][j])))
+                self.infoWidget.matrixWidget.setItem(i, j, item)
+                # Проверяем, является ли текущая ячейка частью лучшего решения
+                if data['best_solution'] and j == data['best_solution'][i]:
+                    item.setBackground(QtCore.Qt.green)
         
         # Update plot
         self.canvas.clear()
