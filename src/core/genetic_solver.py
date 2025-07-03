@@ -3,7 +3,7 @@ import copy
 
 class GeneticSolver:
     def __init__(self, cost_matrix, population_size=100, mutation_rate=0.1, 
-                 crossover_rate=0.9, max_generations=1000, early_stop=50, use_reversal_mutation=False):
+                 crossover_rate=0.9, max_generations=1000, early_stop=50, use_reversal_mutation=False, use_tournament_selection=False):
         """        
             cost_matrix: матрица затрат NxN (list of lists)
             population_size: размер популяции (int)
@@ -21,6 +21,8 @@ class GeneticSolver:
         self.early_stop = early_stop  
         self.no_improvement_count = 0 
         self.use_reversal_mutation = use_reversal_mutation  # Сохраняем параметр
+        self.use_tournament_selection = use_tournament_selection
+
 
         
         # Текущая фаза алгоритма: 'init', 'selection', 'crossover', 'mutation'
@@ -59,16 +61,45 @@ class GeneticSolver:
         else:
             self.no_improvement_count += 1  # Увеличиваем только если НИ ОДНА особь не дала улучшения 
 
-    def _do_selection(self):
-        fitnesses = [1 / (self._calculate_fitness(ch) + 1) for ch in self.population]  # Инвертированные значения приспособленности
-        total_fitness = sum(fitnesses)  # Сумма всех значений приспособленности
-        probabilities = [f / total_fitness for f in fitnesses]  # Вероятности выбора каждой особи
+    # def _do_selection(self):
+    #     fitnesses = [1 / (self._calculate_fitness(ch) + 1) for ch in self.population]  # Инвертированные значения приспособленности
+    #     total_fitness = sum(fitnesses)  # Сумма всех значений приспособленности
+    #     probabilities = [f / total_fitness for f in fitnesses]  # Вероятности выбора каждой особи
         
-        self.selected = random.choices(  # Выбор особей с учетом их вероятностей
+    #     self.selected = random.choices(  # Выбор особей с учетом их вероятностей
+    #         self.population, 
+    #         weights=probabilities, 
+    #         k=self.population_size  # Выбираем столько же особей, сколько в популяции
+    #     )
+
+    def set_selection_method(self, use_tournament_selection):
+        """Метод для изменения метода мутации во время работы"""
+        self.use_tournament_selection = use_tournament_selection
+
+    def _do_selection(self):
+        if self.use_tournament_selection:
+            self._tournament_selection()
+        else:
+            self._roulette_wheel_selection()
+
+    def _roulette_wheel_selection(self):
+        fitnesses = [1 / (self._calculate_fitness(ch) + 1) for ch in self.population]
+        total_fitness = sum(fitnesses)
+        probabilities = [f / total_fitness for f in fitnesses]
+        
+        self.selected = random.choices(
             self.population, 
             weights=probabilities, 
-            k=self.population_size  # Выбираем столько же особей, сколько в популяции
+            k=self.population_size
         )
+
+    def _tournament_selection(self, tournament_size=3):
+        self.selected = []
+        for _ in range(self.population_size):
+            contestants = random.sample(self.population, tournament_size)
+            # Выбираем лучшую особь (с минимальной стоимостью)
+            winner = min(contestants, key=self._calculate_fitness)
+            self.selected.append(winner.copy())
 
     def _ordered_crossover(self, parent1, parent2): # упорядоченное скрещивание
         size = self.n  

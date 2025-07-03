@@ -44,6 +44,12 @@ class InfoWidget(QDockWidget, Ui_InfoWidget):
         self.horizontalLayout_mutation.addWidget(self.mutationTypeLabel)
         self.verticalLayout.addLayout(self.horizontalLayout_mutation)
 
+        self.selectionTypeLabel = QtWidgets.QLabel("Selection: Roulette")
+        self.selectionTypeLabel.setAlignment(Qt.AlignLeft)
+        self.horizontalLayout_selection = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_selection.addWidget(self.selectionTypeLabel)
+        self.verticalLayout.addLayout(self.horizontalLayout_selection)
+
 
         # Выравнивание текста
         for widget in [self.bestSolCost, self.averageGenCost, 
@@ -84,15 +90,6 @@ class InfoWidget(QDockWidget, Ui_InfoWidget):
 
         self.bestChromosomeValue.setPlainText(chromo_str)
         self.bestChromosomeValue.setStyleSheet("color: black;")
-        
-        # Обновление матрицы затрат
-        # n = len(data['cost_matrix'])
-        # self.matrixWidget.setRowCount(n)
-        # self.matrixWidget.setColumnCount(n)
-        # for i in range(n):
-        #     for j in range(n):
-        #         self.matrixWidget.setItem(i, j, 
-        #             QTableWidgetItem(str(data['cost_matrix'][i][j])))
 
         cost_matrix = data.get('cost_matrix', [])
         n = len(cost_matrix)

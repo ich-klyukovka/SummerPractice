@@ -106,8 +106,8 @@ class ParametersDock(QDockWidget, Ui_ParametersDock):
             'steps_amount': self.stepsAmountSpinBox.value(),
             'early_stop': self.earlyStopSpinBox.value(),
             'use_reversal': self.mutation.isChecked(),
-            'use_reversal': self.mutation.isChecked(),  # Состояние чекбокса
-            'use_ordered': self.crossing.isChecked()
+            'use_tournament': self.crossing.isChecked()
         }
         
         self.goButtonClicked.emit(settings)
+    

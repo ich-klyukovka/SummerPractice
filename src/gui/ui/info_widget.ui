@@ -191,6 +191,18 @@
     </item>
 
     <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_selection">
+            <item>
+                <widget class="QLabel" name="selectionTypeLabel">
+                    <property name="text">
+                        <string>Selection: Roulette</string>
+                    </property>
+                </widget>
+            </item>
+        </layout>
+    </item>
+
+    <item>
     <layout class="QVBoxLayout" name="verticalLayout_bestChromosome">
     <item>
     <widget class="QLabel" name="bestChromosomeLabel">

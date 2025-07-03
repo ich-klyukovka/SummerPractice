@@ -90,7 +90,7 @@ class Ui_ParametersDock(object):
         self.stepsAmountLabel.setText(_translate("ParametersDock", "Steps amount"))
         self.populationLabel.setText(_translate("ParametersDock", "Population size"))
         self.mutation.setText(_translate("ParametersDock", "Mutation by reversal"))
-        self.crossing.setText(_translate("ParametersDock", "Ordered crossing"))
+        self.crossing.setText(_translate("ParametersDock", "Use Tournament"))
         self.goButton.setText(_translate("ParametersDock", "Start"))
 
 

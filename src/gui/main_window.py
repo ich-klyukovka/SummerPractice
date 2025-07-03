@@ -34,6 +34,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.isPlaying = False
         self.parametersDock.mutation.stateChanged.connect(self.update_mutation_method)
+        self.parametersDock.crossing.stateChanged.connect(self.update_selection_method)
+
 
         self.stopButton.clicked.connect(self.stop_algorithm)
         self.is_running = False  # Добавить флаг для отслеживания состояния
@@ -108,7 +110,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Обновляем текст в интерфейсе
         mutation_text = "Mutation: Reversal" if use_reversal else "Mutation: Swap"
         self.infoWidget.mutationTypeLabel.setText(mutation_text)
-        print(f"Мутация изменена на: {'переворот' if use_reversal else 'точечная'}")
+        #print(f"Мутация изменена на: {'переворот' if use_reversal else 'точечная'}")
+
+    def update_selection_method(self, state):
+        use_tournament = bool(state)
+        if hasattr(self, 'controller'):
+            self.controller.set_selection_method(use_tournament)
+        
+        # Обновляем текст в интерфейсе
+        selection_text = "Selection: Tournament" if use_tournament else "Selection: Roulette"
+        self.infoWidget.selectionTypeLabel.setText(selection_text)
+        #print(f"Метод отбора изменён на: {'турнирный' if use_tournament else 'рулетка'}")
 
     def start_algorithm(self, settings):
         try:
@@ -122,10 +134,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 mutation_rate=settings['mutation_rate'],
                 crossover_rate=settings['crossover_rate'],
                 max_generations=settings['steps_amount'],
-                early_stop=settings['early_stop']
+                early_stop=settings['early_stop'],
+                use_reversal_mutation=settings['use_reversal'],
+                use_tournament=settings['use_tournament']
             )
             
-            # Initial step to display first generation
+            mutation_text = "Mutation: Reversal" if settings['use_reversal'] else "Mutation: Swap"
+            self.infoWidget.mutationTypeLabel.setText(mutation_text)
+            
+            selection_text = "Selection: Tournament" if settings['use_tournament'] else "Selection: Roulette"
+            self.infoWidget.selectionTypeLabel.setText(selection_text)
+            
             self.next_step()
         except Exception as e:
             print(f"Error starting algorithm: {e}")

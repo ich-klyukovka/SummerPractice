@@ -15,7 +15,7 @@ class GeneticController(QObject):
         
     def initialize_solver(self, cost_matrix=None, n=5, population_size=100, 
                         mutation_rate=0.1, crossover_rate=0.9, 
-                        max_generations=1000, early_stop=50, use_reversal_mutation=False):
+                        max_generations=1000, early_stop=50, use_reversal_mutation=False, use_tournament=False):
         if cost_matrix is None:
             cost_matrix = generate_cost_matrix(n)
             
@@ -26,7 +26,9 @@ class GeneticController(QObject):
             crossover_rate=crossover_rate,
             max_generations=max_generations,
             early_stop=early_stop,
-            use_reversal_mutation=use_reversal_mutation  # Передаем параметр
+            use_reversal_mutation=use_reversal_mutation,
+            use_tournament_selection=use_tournament 
+
 
         )
         self.best_fitness_history = []
@@ -36,6 +38,10 @@ class GeneticController(QObject):
     def set_mutation_method(self, use_reversal):
         if self.solver is not None:
             self.solver.set_mutation_method(use_reversal)
+
+    def set_selection_method(self, use_tournament):
+            if self.solver is not None:
+                self.solver.set_selection_method(use_tournament)
 
     def step(self):
         if self.solver is None:
