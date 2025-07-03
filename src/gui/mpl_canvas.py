@@ -1,10 +1,7 @@
 import matplotlib
-# класс, который связывает Matplotlib с PyQt5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-# объект, содержащий график
 from matplotlib.figure import Figure
-
-import numpy as np
+from matplotlib.ticker import MaxNLocator
 
 matplotlib.use('Qt5Agg')
 
@@ -12,7 +9,9 @@ matplotlib.use('Qt5Agg')
 class MplCanvas(FigureCanvas):
     def __init__(self, parent=None, width: int = 8, height: int = 4, dpi: int = 100):
         fig = Figure(figsize=(width, height), dpi=dpi)      # контейнер для графика
-        self.axes = fig.add_subplot()   # добавлен подграфик (область, где будет нарисован график)
+        self.axes = fig.add_subplot()   
+        self.axes.xaxis.set_major_locator(MaxNLocator(integer=True))
+
         super(MplCanvas, self).__init__(fig)
         self.setParent(parent)
 

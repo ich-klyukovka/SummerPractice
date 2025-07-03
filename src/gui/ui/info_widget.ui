@@ -126,6 +126,18 @@
       </item>
      </layout>
     </item>
+    <!-- Добавить перед verticalSpacer_2 -->
+    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_mutation">
+    <item>
+    <widget class="QLabel" name="mutationTypeLabel">
+        <property name="text">
+        <string>Mutation: Swap</string>
+        </property>
+    </widget>
+    </item>
+    </layout>
+    </item>
     <item>
      <spacer name="verticalSpacer_2">
       <property name="orientation">
@@ -138,6 +150,63 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <!-- После существующих элементов -->
+    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_gen">
+    <item>
+    <widget class="QLabel" name="generationLabel">
+        <property name="text">
+        <string>Current generation:</string>
+        </property>
+    </widget>
+    </item>
+    <item>
+    <widget class="QLineEdit" name="generationValue">
+        <property name="enabled">
+        <bool>false</bool>
+        </property>
+    </widget>
+    </item>
+    </layout>
+    </item>
+
+    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_phase">
+    <item>
+    <widget class="QLabel" name="phaseLabel">
+        <property name="text">
+        <string>Current phase:</string>
+        </property>
+    </widget>
+    </item>
+    <item>
+    <widget class="QLineEdit" name="phaseValue">
+        <property name="enabled">
+        <bool>false</bool>
+        </property>
+    </widget>
+    </item>
+    </layout>
+    </item>
+
+    <item>
+    <layout class="QVBoxLayout" name="verticalLayout_bestChromosome">
+    <item>
+    <widget class="QLabel" name="bestChromosomeLabel">
+        <property name="text">
+        <string>Best chromosome:</string>
+        </property>
+    </widget>
+    </item>
+    <item>
+    <widget class="QTextEdit" name="bestChromosomeValue">
+        <property name="enabled">
+        <bool>false</bool>
+        </property>
+    </widget>
+    </item>
+    </layout>
     </item>
    </layout>
   </widget>

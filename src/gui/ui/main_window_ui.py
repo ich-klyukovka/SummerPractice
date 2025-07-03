@@ -114,6 +114,17 @@ class Ui_MainWindow(object):
         self.menuSettings.addAction(self.actionFeelin_lucky)
         self.menubar.addAction(self.menuSettings.menuAction())
 
+        # Добавить после ffButton
+        self.stopButton = QtWidgets.QPushButton(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.stopButton.sizePolicy().hasHeightForWidth())
+        self.stopButton.setSizePolicy(sizePolicy)
+        self.stopButton.setMinimumSize(QtCore.QSize(50, 50))
+        self.stopButton.setObjectName("stopButton")
+        self.horizontalLayout.addWidget(self.stopButton)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

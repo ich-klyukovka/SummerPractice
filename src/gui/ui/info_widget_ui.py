@@ -66,6 +66,14 @@ class Ui_InfoWidget(object):
         self.verticalLayout.addItem(spacerItem)
         InfoWidget.setWidget(self.dockWidgetContents)
 
+        # В setupUi после averageGenCost
+        self.horizontalLayout_mutation = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_mutation.setObjectName("horizontalLayout_mutation")
+        self.mutationTypeLabel = QtWidgets.QLabel(self.dockWidgetContents)
+        self.mutationTypeLabel.setObjectName("mutationTypeLabel")
+        self.horizontalLayout_mutation.addWidget(self.mutationTypeLabel)
+        self.verticalLayout.addLayout(self.horizontalLayout_mutation)
+
         self.retranslateUi(InfoWidget)
         QtCore.QMetaObject.connectSlotsByName(InfoWidget)
 
